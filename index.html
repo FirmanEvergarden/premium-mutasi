@@ -137,43 +137,25 @@
   </style>
 </head>
 <body>
-  <header>Mutasi QRIS Order Kuota</header>
+  <header>Mutasi QRIS Viewer</header>
   <main>
     <div class="button-container">
-      <button onclick="fetchMutasi(1, 'Elzy')">Elzy</button>
-      <button onclick="fetchMutasi(2, 'Canny')">Canny</button>
-      <button onclick="fetchMutasi(3, 'Lau Store')">Lau Store</button>
-      <button onclick="fetchMutasi(4, 'Roy')">Roy</button>
-      <button onclick="fetchMutasi(5, 'User 5')">User 5</button>
-      <button onclick="fetchMutasi(6, 'User 6')">User 6</button>
+      <button onclick="redirectToUrl(1, 'Elzy')">Elzy</button>
+      <button onclick="redirectToUrl(2, 'Canny')">Canny</button>
+      <button onclick="redirectToUrl(3, 'Lau Store')">Lau Store</button>
+      <button onclick="redirectToUrl(4, 'Roy')">Roy</button>
+      <button onclick="redirectToUrl(5, 'User 5')">User 5</button>
+      <button onclick="redirectToUrl(6, 'User 6')">User 6</button>
     </div>
     <div id="result" class="result">Klik salah satu nama di atas untuk melihat data mutasi.</div>
   </main>
 
   <script>
-    async function fetchMutasi(id, name) {
-      const resultDiv = document.getElementById('result');
-      resultDiv.style.opacity = '0';
-      resultDiv.style.transform = 'translateY(20px)';
-      try {
-        const res = await fetch(`/mutasi/${id}`);
-        if (res.ok) {
-          const data = await res.json();
-          setTimeout(() => {
-            resultDiv.innerText = 'Data ' + name + ':\n\n' + JSON.stringify(data, null, 2);
-            resultDiv.style.opacity = '1';
-            resultDiv.style.transform = 'translateY(0)';
-          }, 300);
-        } else {
-          resultDiv.innerText = 'Gagal mengambil data untuk ' + name;
-          resultDiv.style.opacity = '1';
-          resultDiv.style.transform = 'translateY(0)';
-        }
-      } catch (error) {
-        resultDiv.innerText = 'Terjadi kesalahan: ' + error.message;
-        resultDiv.style.opacity = '1';
-        resultDiv.style.transform = 'translateY(0)';
-      }
+    function redirectToUrl(id, name) {
+      // Misalnya, setiap pengguna memiliki halaman terpisah berdasarkan ID
+      const url = `/mutasi/${id}`;
+      // Arahkan ke URL yang sesuai
+      window.location.href = url;
     }
   </script>
 </body>
